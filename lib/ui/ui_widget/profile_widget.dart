@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ProfileWidgetPage extends StatefulWidget{
+  const ProfileWidgetPage({super.key});
+
   @override
   State<StatefulWidget> createState() => _ProfileWidgetPage();
 
@@ -9,7 +11,7 @@ class ProfileWidgetPage extends StatefulWidget{
 class _ProfileWidgetPage extends State<ProfileWidgetPage>{
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       body: Text("profile page"),
     );
   }
