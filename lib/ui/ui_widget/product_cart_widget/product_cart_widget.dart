@@ -1,6 +1,8 @@
 import 'package:e_commerce_app/ui/category_model/category_model.dart';
 import 'package:flutter/material.dart';
 
+import '../../product_details_screen/product_details.dart';
+
 class ProductCart extends StatelessWidget{
   final ProductModel product;
   const ProductCart({super.key, required this.product});
@@ -8,7 +10,9 @@ class ProductCart extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){},
+      onTap: (){
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> const ProductDetailsScreen()));
+      },
       child: Stack(
         children: [
           Container(
