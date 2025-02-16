@@ -13,15 +13,13 @@ class DashboardWidgetPage extends StatefulWidget{
 class _DashboardWidgetPage extends State<DashboardWidgetPage>{
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        appBar: AppBar(
-          backgroundColor: Colors.blue, actions: const [Text("appbar")],),
-        body: const Column(children: [
-                  TopWidget(),
-                ],),
-      ),
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        backgroundColor: Colors.blue, actions: const [Text("appbar")],),
+      body: const Column(children: [
+                TopWidget(),
+              ],),
     );
   }
 }

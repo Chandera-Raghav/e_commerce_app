@@ -88,4 +88,64 @@ final List<ProductModel> products = [
       category: "iPhone",
       rate: 4.9,
       quantity: 1),
+  ProductModel(
+      title: "Buy iPhone 16 Pro",
+      description: "Monthly pricing is after purchase using EMI with qualifying cards at 15.99% p.a. over a 12‑month tenure. Monthly pricing is rounded to the nearest rupee. Exact pricing will be provided by your card issuer, subject to your card issuer’s terms and conditions.",
+      image: "assets/images/sub_cat_images/smart_phone2.png",
+      review: "(180 Reviews)",
+      seller: "Jotian okyanl",
+      price: 53005.20,
+      colors: [
+        Colors.black,
+        Colors.blue,
+        Colors.red
+      ],
+      category: "iPhone",
+      rate: 4.9,
+      quantity: 1),
+  ProductModel(
+      title: "Buy iPhone 16 Pro",
+      description: "Monthly pricing is after purchase using EMI with qualifying cards at 15.99% p.a. over a 12‑month tenure. Monthly pricing is rounded to the nearest rupee. Exact pricing will be provided by your card issuer, subject to your card issuer’s terms and conditions.",
+      image: "assets/images/sub_cat_images/smart_phone2.png",
+      review: "(180 Reviews)",
+      seller: "Jotian okyanl",
+      price: 53005.20,
+      colors: [
+        Colors.black,
+        Colors.blue,
+        Colors.red
+      ],
+      category: "iPhone",
+      rate: 4.9,
+      quantity: 1),
+  ProductModel(
+      title: "Buy iPhone 16 Pro",
+      description: "Monthly pricing is after purchase using EMI with qualifying cards at 15.99% p.a. over a 12‑month tenure. Monthly pricing is rounded to the nearest rupee. Exact pricing will be provided by your card issuer, subject to your card issuer’s terms and conditions.",
+      image: "assets/images/sub_cat_images/smart_phone2.png",
+      review: "(180 Reviews)",
+      seller: "Jotian okyanl",
+      price: 53005.20,
+      colors: [
+        Colors.black,
+        Colors.blue,
+        Colors.red
+      ],
+      category: "iPhone",
+      rate: 4.9,
+      quantity: 1),
+  ProductModel(
+      title: "Buy iPhone 16 Pro",
+      description: "Monthly pricing is after purchase using EMI with qualifying cards at 15.99% p.a. over a 12‑month tenure. Monthly pricing is rounded to the nearest rupee. Exact pricing will be provided by your card issuer, subject to your card issuer’s terms and conditions.",
+      image: "assets/images/sub_cat_images/smart_phone2.png",
+      review: "(180 Reviews)",
+      seller: "Jotian okyanl",
+      price: 53005.20,
+      colors: [
+        Colors.black,
+        Colors.blue,
+        Colors.red
+      ],
+      category: "iPhone",
+      rate: 4.9,
+      quantity: 1),
   ];
