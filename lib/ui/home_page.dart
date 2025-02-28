@@ -1,4 +1,3 @@
-import 'package:e_commerce_app/ui/product_details_screen/my_product.dart';
 import 'package:e_commerce_app/ui/ui_widget/cart_widget.dart';
 import 'package:e_commerce_app/ui/ui_widget/dashboard_widget.dart';
 import 'package:e_commerce_app/ui/ui_widget/home_widget.dart';
@@ -50,34 +49,38 @@ class _HomePageState extends State<HomePage> {
           children: [
             IconButton(
                 onPressed: () {
+                  nextPage(0);
                 },
                 icon: const Icon(
                   Icons.dashboard_customize_outlined,
-                  color: Colors.orange,
+                  color: Colors.white54,
                 )),
             IconButton(
                 onPressed: () {
+                  nextPage(1);
                 },
                 icon: const Icon(
                   CupertinoIcons.heart,
-                  color: Colors.orange,
+                  color: Colors.white54,
                 )),
             const SizedBox(
               width: 30,
             ),
             IconButton(
                 onPressed: () {
+                  nextPage(3);
                 },
                 icon: const Icon(
                   Icons.shopping_cart_checkout,
-                  color: Colors.orange,
+                  color: Colors.white54,
                 )),
             IconButton(
                 onPressed: () {
+                  nextPage(4);
                 },
                 icon: const Icon(
                   Icons.person,
-                  color: Colors.orange,
+                  color: Colors.white54,
                 ))
           ],
         ),
@@ -85,11 +88,12 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
+          nextPage(2);
         },
         shape:
         const CircleBorder(),
         backgroundColor: Colors.deepOrange,
-        child: const Icon(Icons.house_siding_sharp, color: Colors.white70,),
+        child: const Icon(Icons.house_siding_sharp, color: Colors.white54,),
       ),
     );
   }

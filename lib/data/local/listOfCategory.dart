@@ -7,19 +7,19 @@ class Category {
 
 List<Category> category = [
   Category(
-      title: "Smart\nPhone",
+      title: "Smart Phone",
       imgPath: "assets/images/categoryImages/smart_phone.png"
   ),
   Category(
-      title: "Ear\nPhone",
+      title: "Ear Phone",
       imgPath: "assets/images/categoryImages/earphone.png"
   ),
   Category(
-      title: "SSD\n556Gb",
+      title: "SSD 556Gb",
       imgPath: "assets/images/categoryImages/ssd_image.png"
   ),
   Category(
-      title: "T-Shirt\nPhone",
+      title: "T-Shirt Phone",
       imgPath: "assets/images/categoryImages/t_shirt.png"
   ),
   Category(
@@ -31,7 +31,7 @@ List<Category> category = [
       imgPath: "assets/images/categoryImages/iphone.jpg"
   ),
   Category(
-      title: "Kitchen\nTray",
+      title: "Kitchen Tray",
       imgPath: "assets/images/categoryImages/tray.png"
   ),
 ];

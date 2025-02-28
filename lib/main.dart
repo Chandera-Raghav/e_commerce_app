@@ -1,8 +1,13 @@
-import 'package:e_commerce_app/ui/home_page.dart';
+import 'package:e_commerce_app/data/local/user_bloc/user_bloc.dart';
+import 'package:e_commerce_app/data/remote/api_helper.dart';
+import 'package:e_commerce_app/data/repositories/app_repositories.dart';
+import 'package:e_commerce_app/ui/flash_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+      BlocProvider(create: (context) => UserBloc(appRepositories: AppRepositories(apiHelper: ApiHelper())), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -11,9 +16,16 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo',
-      home: HomePage(),
+      theme: ThemeData(
+        colorScheme: const ColorScheme.light(
+            primary: Color(0xFF00B2E7),
+            secondary: Color(0xFFE064F7),
+            tertiary: Color(0xFFFF8D6C)
+        ),
+      ),
+      home: const FlashPage(),
     );
   }
 }
