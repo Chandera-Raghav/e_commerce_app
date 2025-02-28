@@ -177,14 +177,11 @@ class _SignupPageState extends State<SignupPage> {
                   ],
                 ),
             BlocListener<UserBloc, UserState>(listener: (_, state){
-              print(state.toString());
               if(state is UserSuccessState){
-                print("success");
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Register successfully...")));
                 Navigator.pop(context);
               }
               if(state is UserFailedState){
-                // print("failed");
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMassage)));
               }
             },

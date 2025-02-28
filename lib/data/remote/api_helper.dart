@@ -16,11 +16,9 @@ class ApiHelper{
   Future<dynamic> postApi({required String url, Map<String, dynamic>? mBodyParams}) async {
 
     try{
-      // print("try bloc");
       var res = await http.post(Uri.parse(url), body: mBodyParams!= null ? jsonEncode(mBodyParams) : {});
       return returnJsonResponse(res);
     }on SocketException catch(e) {
-      // print("catch bloc");
       throw(FetchDataException(errorMsg: e.message));
     }
   }

@@ -10,21 +10,16 @@ class UserBloc extends Bloc<UserEvent, UserState>{
   UserBloc({required this.appRepositories}) : super(UserInitialState()){
 
     on<UserSignUpEvent>((event, emit) async {
-      // print("Data length : ${event.bodyParams.length}");
       emit(UserLoadingState());
       try {
-        print(event.bodyParams);
         var data = await appRepositories.registrationUser(mBodyParams: event.bodyParams);
-        print(data);
         if (data["status"]) {
-          print("success");
           emit(UserSuccessState());
         }
         else {
           emit(UserFailedState(errorMassage: data['massege']));
         }
       }catch(e){
-        // print("My errors : ${e.toString()}");
         emit(UserFailedState(errorMassage: (e is AppExceptions) ? e.toString() : e.toString()));
       }
     });
