@@ -16,14 +16,4 @@ class GetApiModel {
     };
   }
 
-  // factory SignUpModel.fromJson(Map<String, dynamic> json){
-  //   return {
-  //     "name": json[],
-  //     "mobile_number": mobNumber,
-  //     "email": email,
-  //     "password":
-  //   }
-  // }
-
-
 }

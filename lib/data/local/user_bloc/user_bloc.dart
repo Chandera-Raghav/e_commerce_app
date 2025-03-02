@@ -17,9 +17,28 @@ class UserBloc extends Bloc<UserEvent, UserState>{
           emit(UserSuccessState());
         }
         else {
+          print("hi null");
           emit(UserFailedState(errorMassage: data['massege']));
         }
       }catch(e){
+        print("hi");
+        emit(UserFailedState(errorMassage: (e is AppExceptions) ? e.toString() : e.toString()));
+      }
+    });
+    on<UserSignInEvent>((event, emit) async {
+      emit(UserLoadingState());
+      try {
+        var data = await appRepositories.loginUser(mBodyParams: event.bodyParams);
+        print("out side : ${data['status']}");
+
+        if(data["status"]){
+          print(data['status']);
+          emit(UserSuccessState());
+        }else{
+          emit(UserFailedState(errorMassage: data["massege"]));
+        }
+      }catch(e){
+        print("nuu program");
         emit(UserFailedState(errorMassage: (e is AppExceptions) ? e.toString() : e.toString()));
       }
     });

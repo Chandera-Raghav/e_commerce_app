@@ -21,9 +21,7 @@ class _HomeWidgetPage extends State<HomeWidgetPage>{
     return Scaffold(
       body: SingleChildScrollView(child: Column(children: [
         const TopWidget(),
-        // const SizedBox(height: 03,),
         const SearchWidget(),
-        // const SizedBox(height: 03,),
         SliderImages(onChange: (value){
           setState(() {
             currentSlide == value;

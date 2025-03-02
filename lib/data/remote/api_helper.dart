@@ -22,7 +22,14 @@ class ApiHelper{
       throw(FetchDataException(errorMsg: e.message));
     }
   }
-
+  Future<dynamic> postApiLogin({required String url, Map<String, dynamic>? mBodyParams}) async {
+    try{
+      var res = await http.post(Uri.parse(url), body: mBodyParams!= null ? jsonEncode(mBodyParams) : {});
+      return returnJsonResponse(res);
+    }on SocketException catch(e){
+      throw(FetchDataException(errorMsg: e.message));
+    }
+  }
   dynamic returnJsonResponse(http.Response response) {
     switch(response.statusCode){
       case 200:

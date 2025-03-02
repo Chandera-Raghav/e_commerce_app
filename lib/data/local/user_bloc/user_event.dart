@@ -9,5 +9,6 @@ class UserSignUpEvent extends UserEvent {
 class UserSignInEvent extends UserEvent {
   // SignUpModel loginUser;
   // UserSignInEvent({required this.loginUser});
-
+  Map<String, dynamic> bodyParams;
+  UserSignInEvent({required this.bodyParams});
 }

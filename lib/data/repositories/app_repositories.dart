@@ -11,4 +11,13 @@ class AppRepositories{
       throw(e);
     }
   }
+  Future<dynamic> loginUser({required Map<String, dynamic> mBodyParams}) async {
+    try{
+      dynamic data = await apiHelper.postApiLogin(url: UrlHelper.loginUrl, mBodyParams: mBodyParams);
+      print("Login error : ${data.toString()}");
+      return data;
+    }catch(e){
+      throw(e);
+    }
+  }
 }

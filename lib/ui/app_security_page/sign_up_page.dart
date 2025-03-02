@@ -18,18 +18,11 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isPassVisible = false;
-  bool isEmailValid({required String email}){
-    final bool emailValid =
-    RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-        .hasMatch(email);
-    return emailValid;
-  }
+
   GlobalKey<FormState> mKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-
-
     return Form(
         key: mKey,
         child: Scaffold(
@@ -44,7 +37,6 @@ class _SignupPageState extends State<SignupPage> {
                 Column(
                   children: [
                     mSpacer(mWidth: double.infinity),
-
                     const Text(
                       "Sign up",
                       style: TextStyle(
@@ -91,7 +83,7 @@ class _SignupPageState extends State<SignupPage> {
                       },
                       controller: mobilNumberController,
                       keyboardType: TextInputType.phone,
-
+                      maxLength: 10,
                       decoration: InputDecoration(
                         hintText: "Phone Number",
                         errorBorder: OutlineInputBorder(
@@ -151,6 +143,18 @@ class _SignupPageState extends State<SignupPage> {
                       controller: passwordController,
                       obscureText: !isPassVisible,
                       keyboardType: TextInputType.visiblePassword,
+                      validator: (value){
+                        if(value!.isEmpty){
+                          return "Please enter password";
+                        }else{
+                          bool? result = validatePassword(value!);
+                          if(result!){
+                            return null;
+                          }else{
+                            return "Password should contain Capital, small letter, Number & Special";
+                          }
+                        }
+                      },
                       decoration: InputDecoration(
                         hintText: "Password",
 
