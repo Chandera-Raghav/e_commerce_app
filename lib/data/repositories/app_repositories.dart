@@ -6,7 +6,9 @@ class AppRepositories{
   AppRepositories({required this.apiHelper});
   Future<dynamic> registrationUser({required Map<String, dynamic> mBodyParams}) async {
     try{
-      return await apiHelper.postApi(url: UrlHelper.registerUrl, mBodyParams: mBodyParams);
+
+      var data = await apiHelper.postApi(url: UrlHelper.registerUrl, mBodyParams: mBodyParams);
+      return data;
     }catch(e){
       throw(e);
     }
@@ -14,7 +16,6 @@ class AppRepositories{
   Future<dynamic> loginUser({required Map<String, dynamic> mBodyParams}) async {
     try{
       dynamic data = await apiHelper.postApiLogin(url: UrlHelper.loginUrl, mBodyParams: mBodyParams);
-      print("Login error : ${data.toString()}");
       return data;
     }catch(e){
       throw(e);

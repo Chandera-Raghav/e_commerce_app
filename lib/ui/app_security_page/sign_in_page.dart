@@ -1,23 +1,25 @@
 import 'package:e_commerce_app/data/local/ui_helper.dart';
-import 'package:e_commerce_app/data/local/user_bloc/user_bloc.dart';
-import 'package:e_commerce_app/data/local/user_bloc/user_event.dart';
-import 'package:e_commerce_app/data/local/user_bloc/user_state.dart';
+import 'package:e_commerce_app/data/local/user_bloc/user_login_bloc.dart';
+import 'package:e_commerce_app/data/local/user_bloc/user_login_state.dart';
 import 'package:e_commerce_app/ui/app_security_page/sign_up_page.dart';
+import 'package:e_commerce_app/ui/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../data/local/user_bloc/user_login_event.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
 
   @override
-  State<SignInPage> createState() => _SignupPageState();
+  State<SignInPage> createState() => _SignInPageState();
 }
 
-class _SignupPageState extends State<SignInPage> {
+class _SignInPageState extends State<SignInPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isPassVisible = false;
-
+  bool isLoading = false;
   GlobalKey<FormState> mKey = GlobalKey<FormState>();
 
   @override
@@ -125,41 +127,56 @@ class _SignupPageState extends State<SignInPage> {
                   ),
                 ],
               ),
-              BlocListener<UserBloc, UserState>(listener: (_, state){
-                if(state is UserSuccessState){
-                  ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Login successfully...")));
-                  Navigator.pop(context);
-                }
-                if(state is UserFailedState){
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMassage)));
-                }
-              },
-                child:
-                Container(
-                    padding: const EdgeInsets.only(top: 3, left: 3),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        if(mKey.currentState!.validate()){
-                          String email = emailController.text;
-                          String password = passwordController.text;
+              StatefulBuilder(
+                builder: (context, ss) {
+                  return BlocListener<UserLogInBloc, UserLogInState>(listener: (_, state) async {
+                    if(state is UserLogInLoadingState){
+                      isLoading = true;
+                      ss((){});
+                    }
+                    if(state is UserLogInFailedState){
+                      isLoading = false;
+                      ss((){});
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMassage)));
+                    }
+                    if(state is UserLogInSuccessState){
+                      isLoading = false;
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Login successfully...")));
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
+                    }
 
-                          context.read<UserBloc>().add(UserSignInEvent(bodyParams: {
-                            "email": email,
-                            "password": password
-                          }));
-                        }
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: const StadiumBorder(),
-                        padding: const EdgeInsets.symmetric(vertical: 16),
-                        backgroundColor: Colors.purple,
-                      ),
-                      child: const Text(
-                        "Sign up",
-                        style: TextStyle(fontSize: 22, color: Colors.black),
-                      ),
-                    )
-                ),
+                  },
+                    child:
+                    Container(
+                        padding: const EdgeInsets.only(top: 3, left: 3),
+                        child: ElevatedButton(
+                          onPressed: () {
+                            if(mKey.currentState!.validate()){
+                              String email = emailController.text;
+                              String password = passwordController.text;
+
+                              context.read<UserLogInBloc>().add(UserSignInEvent(bodyParams: {
+                                "email": email,
+                                "password": password
+                              }));
+                            }
+                          },
+                          style: ElevatedButton.styleFrom(
+                            shape: const StadiumBorder(),
+                            padding: const EdgeInsets.symmetric(vertical: 16),
+                            backgroundColor: Colors.purple,
+                          ),
+                          child: isLoading ? const Row(mainAxisAlignment: MainAxisAlignment.center, children: [CircularProgressIndicator(), SizedBox(width: 11), Text(
+                            "Signing In...",
+                            style: TextStyle(fontSize: 22, color: Colors.black),
+                          )],) : const Text(
+                            "Sign In",
+                            style: TextStyle(fontSize: 22, color: Colors.black),
+                          ),
+                        )
+                    ),
+                  );
+                }
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -169,7 +186,7 @@ class _SignupPageState extends State<SignInPage> {
                       onPressed: () {
                         Navigator.push(context, MaterialPageRoute(builder: (context) => const SignupPage()));
                       },
-                      child: const Text("Sing Up ", style: TextStyle(color: Colors.purple),)
+                      child: const Text("Sing up ", style: TextStyle(color: Colors.purple),)
                   )
                 ],
               )

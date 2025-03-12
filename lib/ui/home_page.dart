@@ -44,45 +44,48 @@ class _HomePageState extends State<HomePage> {
       bottomNavigationBar: BottomAppBar(
         notchMargin: 18,
         shape: const CircularNotchedRectangle(),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            IconButton(
-                onPressed: () {
-                  nextPage(0);
-                },
-                icon: const Icon(
-                  Icons.dashboard_customize_outlined,
-                  color: Colors.white54,
-                )),
-            IconButton(
-                onPressed: () {
-                  nextPage(1);
-                },
-                icon: const Icon(
-                  CupertinoIcons.heart,
-                  color: Colors.white54,
-                )),
-            const SizedBox(
-              width: 30,
-            ),
-            IconButton(
-                onPressed: () {
-                  nextPage(3);
-                },
-                icon: const Icon(
-                  Icons.shopping_cart_checkout,
-                  color: Colors.white54,
-                )),
-            IconButton(
-                onPressed: () {
-                  nextPage(4);
-                },
-                icon: const Icon(
-                  Icons.person,
-                  color: Colors.white54,
-                ))
-          ],
+        child: SizedBox(
+          width: double.infinity,
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                  onPressed: () {
+                    nextPage(0);
+                  },
+                  icon: const Icon(
+                    Icons.dashboard_customize_outlined,
+                    color: Colors.white54,
+                  )),
+              IconButton(
+                  onPressed: () {
+                    nextPage(1);
+                  },
+                  icon: const Icon(
+                    CupertinoIcons.heart,
+                    color: Colors.white54,
+                  )),
+              const SizedBox(
+                width: 30,
+              ),
+              IconButton(
+                  onPressed: () {
+                    nextPage(3);
+                  },
+                  icon: const Icon(
+                    Icons.shopping_cart_checkout,
+                    color: Colors.white54,
+                  )),
+              IconButton(
+                  onPressed: () {
+                    nextPage(4);
+                  },
+                  icon: const Icon(
+                    Icons.person,
+                    color: Colors.white54,
+                  ))
+            ],
+          ),
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,

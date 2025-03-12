@@ -15,17 +15,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     return Scaffold(
       backgroundColor: Colors.grey.withOpacity(0.20),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.symmetric(horizontal: 10.0),
         child: Container(
           margin: EdgeInsets.zero,
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
             const ProductTopBar(),
             const SizedBox(width: 50, height: 80,),
-              Container(margin: EdgeInsets.zero, width: 20, height: 20,)
 
           ],)
         ),

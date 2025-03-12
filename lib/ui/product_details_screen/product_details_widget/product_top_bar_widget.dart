@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/data/local/ui_helper.dart';
 import 'package:flutter/material.dart';
 
 class ProductTopBar extends StatelessWidget {
@@ -9,15 +10,17 @@ class ProductTopBar extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height * 0.50,
       child: Row(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      // crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
         InkWell(
           onTap: (){
           },
           child: Align(
             child: Container(
-              width: 25,
-              height: 25,
+              padding: const EdgeInsets.all(0.10),
+              width: 30,
+              height: 30,
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(50),
                   color: Colors.white
@@ -26,17 +29,19 @@ class ProductTopBar extends StatelessWidget {
             ),
           ),
         ),
-
+        mSpacer(mWidth: MediaQuery.of(context).size.width-150),
         Container(
-          width: 25,
-          height: 25,
+          padding: const EdgeInsets.all(0.10),
+          width: 30,
+          height: 30,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: Colors.white
           ),
           child: const Icon(Icons.share_outlined),
         ),
-        Container(width: 25, height: 25,
+        Container(width: 30, height: 30,
+          padding: const EdgeInsets.all(0.20),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(50),
               color: Colors.white

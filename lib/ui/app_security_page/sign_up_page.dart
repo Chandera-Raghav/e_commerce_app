@@ -18,7 +18,7 @@ class _SignupPageState extends State<SignupPage> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   bool isPassVisible = false;
-
+  bool isLoading = false;
   GlobalKey<FormState> mKey = GlobalKey<FormState>();
 
   @override
@@ -147,7 +147,7 @@ class _SignupPageState extends State<SignupPage> {
                         if(value!.isEmpty){
                           return "Please enter password";
                         }else{
-                          bool? result = validatePassword(value!);
+                          bool? result = validatePassword(value);
                           if(result!){
                             return null;
                           }else{
@@ -180,45 +180,60 @@ class _SignupPageState extends State<SignupPage> {
                     ),
                   ],
                 ),
-            BlocListener<UserBloc, UserState>(listener: (_, state){
-              if(state is UserSuccessState){
-                ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Register successfully...")));
-                Navigator.pop(context);
-              }
-              if(state is UserFailedState){
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMassage)));
-              }
-            },
-            child:
-            Container(
-                padding: const EdgeInsets.only(top: 3, left: 3),
-                child: ElevatedButton(
-                  onPressed: () {
-                    if(mKey.currentState!.validate()){
-                      String name = userNameController.text;
-                      String email = emailController.text;
-                      String phoneNum = mobilNumberController.text;
-                      String password = passwordController.text;
+            StatefulBuilder(
+              builder: (context, ss) {
+                return BlocListener<UserBloc, UserState>(listener: (_, state){
+                  if(state is UserLoadingState){
+                    isLoading = true;
+                    ss(() {
+                    });
+                  }
+                  if(state is UserFailedState){
+                    isLoading = false;
+                    ss((){});
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(state.errorMassage)));
+                  }
+                  if(state is UserSuccessState){
+                    isLoading = false;
+                    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text("Register successfully...")));
+                    Navigator.pop(context);
+                  }
 
-                      context.read<UserBloc>().add(UserSignUpEvent(bodyParams: {
-                        "name": name,
-                        "mobile_number": phoneNum,
-                        "email": email,
-                        "password": password
-                      }));
-                    }
-                  },
-                  style: ElevatedButton.styleFrom(
-                    shape: const StadiumBorder(),
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    backgroundColor: Colors.purple,
-                  ),
-                  child: const Text(
-                    "Sign up",
-                    style: TextStyle(fontSize: 22, color: Colors.black),
-                  ),
-                )
-            ),
+                },
+                child:
+                Container(
+                    padding: const EdgeInsets.only(top: 3, left: 3),
+                    child: ElevatedButton(
+                      onPressed: () {
+                        if(mKey.currentState!.validate()){
+                          String name = userNameController.text;
+                          String email = emailController.text;
+                          String phoneNum = mobilNumberController.text;
+                          String password = passwordController.text;
+                          context.read<UserBloc>().add(UserSignUpEvent(bodyParams: {
+                            "name": name,
+                            "mobile_number": phoneNum,
+                            "email": email,
+                            "password": password
+                          }));
+                        }
+                      },
+                      style: ElevatedButton.styleFrom(
+                        shape: const StadiumBorder(),
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        backgroundColor: Colors.purple,
+                      ),
+                      child: isLoading ? const Row( mainAxisAlignment: MainAxisAlignment.center, children: [CircularProgressIndicator(color: Colors.white,),SizedBox(width: 11), Text(
+                        "Signing up...",
+                        style: TextStyle(fontSize: 22, color: Colors.black),
+                      )] ,) : const Text(
+                        "Sign up",
+                        style: TextStyle(fontSize: 22, color: Colors.black),
+                      ),
+                    )
+                ),
+                );
+              }
             ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,

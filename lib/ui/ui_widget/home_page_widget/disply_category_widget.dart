@@ -16,8 +16,8 @@ class DisplayCategoryWidget extends StatelessWidget {
             shrinkWrap: true,
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                 childAspectRatio: 0.78,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 10,
                 crossAxisCount: 2),
             itemCount: products.length,
             itemBuilder: (context, index) {

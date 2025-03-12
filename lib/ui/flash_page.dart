@@ -18,7 +18,7 @@ class _FlashPAgeState extends State<FlashPage> {
     super.initState();
     Timer(const Duration(seconds: 5), () async{
       SharedPreferences? pref = await SharedPreferences.getInstance();
-      check = pref.getString("${pref.getString("UID")}") ?? '';
+      check = pref.getString("${'UID'}") ?? '';
       Widget navigetTo = check!.isNotEmpty ? const HomePage() : const SignInPage();
 
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => navigetTo));
